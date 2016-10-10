@@ -55,6 +55,30 @@
   tags:
     - mesos
 
+- name: Setup attributes for mesos-slave
+  template:
+    src: attributes.j2
+    dest: /etc/mesos-slave/attributes
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart mesos-slave
+  tags:
+    - mesos
+
+- name: Setup resources for mesos-slave
+  copy:
+    content: "{{ resources }}"
+    dest: /etc/mesos-slave/resources
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart mesos-slave
+  tags:
+    - mesos
+
 - name: Setup container timeout for mesos-slave
   copy:
     content: "{{ container_timeout }}"

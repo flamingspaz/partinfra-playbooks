@@ -2,3 +2,4 @@
 # vars file for slave
 containerizers: 'docker,mesos'
 container_timeout: '5mins'
+resources: 'ports(*):[31000-32000, 8080-8080, 50000-50000]'
